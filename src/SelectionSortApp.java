@@ -1,14 +1,13 @@
 import java.util.Random;
 
-public class BubbleSortApp
+public class SelectionSortApp
 {
 
    public static void main(String[] args)
    {
-      //Utilize ArrayBubble Class
-      
+      //Use ArraySelection
       int arrSize = 5;
-      ArrayBubble arr = new ArrayBubble(arrSize);
+      ArraySelection arr = new ArraySelection(arrSize);
       
       //Insert values
       arr.insert(9);
@@ -18,12 +17,12 @@ public class BubbleSortApp
       arr.insert(25);
       
       arr.display();
-      arr.bubbleSort();
+      arr.selectionSort();
       arr.display();
       
-      //RNG
+      //RNG 
       int sizeR = 10;
-      ArrayBubble arrR = new ArrayBubble(sizeR);
+      ArraySelection  arrR = new ArraySelection(sizeR);
       
       //Random Number
       Random randObj = new Random();
@@ -35,25 +34,24 @@ public class BubbleSortApp
       
       System.out.println("Random Generated Numbers:");
       arrR.display();
-      arrR.bubbleSort();
-      System.out.println("BubbleSorted Numbers:");
+      arrR.selectionSort();
+      System.out.println("SelectionSorted Numbers:");
       arrR.display();
-
+      
    }
 
 }
 
 
-class ArrayBubble
+class ArraySelection
 {
    //Variables
    private int[] arr;
    private int numElem;
-
-   //Constructor
-   public ArrayBubble(int size)
+   
+   public ArraySelection(int arrSize)
    {
-      arr = new int[size];
+      arr = new int[arrSize];
       numElem = 0;
    }
    
@@ -67,22 +65,28 @@ class ArrayBubble
    {
       for(int i=0; i<numElem; i++)
       {
-         System.out.print(arr[i] + " ");
+         System.out.print(arr[i]+ " ");
       }
       System.out.println("");
    }
    
-   public void bubbleSort()
+   public void selectionSort()
    {
-      for(int i=0; i<numElem-1; i++)
+      int out, in, min;
+      
+      for(out=0; out<numElem-1; out++)
       {
-         for(int j=0; j<numElem-i-1; j++)
+         min = out;
+         
+         for(in = out+1; in<numElem; in++)
          {
-            if(arr[j] > arr[j+1])
+            if(arr[in] < arr[min])
             {
-               swap(j, j+1);
+               min = in;
             }
          }
+         
+         swap(out, min);
       }
    }
    
@@ -92,5 +96,6 @@ class ArrayBubble
       arr[one] = arr[two];
       arr[two] = temp;
    }
+   
+ 
 }
-
